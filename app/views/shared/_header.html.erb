@@ -1,4 +1,4 @@
- <!-- header inner -->
+<!-- header inner -->
     <div class="header-top">
       <div class="header">
         <div class="container">
@@ -7,7 +7,7 @@
               <div class="full">
                 <div class="center-desk">
                   <div class="logo">
-                    <a href="index.html"><img src="<%= asset_path("Event-club.png")%>" alt="#" / width="100%"></a>
+                    <a href=<%= root_path%>><img src="<%= asset_path("Event-club.png")%>" alt="#" / width="100%"></a>
                   </div>
                 </div>
               </div>
@@ -18,17 +18,25 @@
                 <div class="limit-box">
                   <nav class="main-menu ">
                     <ul class="menu-area-main">
-                      <li class="active"> <a href="index.html">Home</a> </li>
+                      <li class="active"> <a href=<%= root_path%>>Home</a> </li>
                   
-                      <li> <a href="#">About</a> </li>
-                      <li> <a href="#">Concerts </a> </li>
-                      <li> <a href="#">Gallery</a> </li>
-                      <li> <a href="#">Contact</a> </li>
-      
-                        <li > <a   href="#">login</a> </li>
-                      <li  > <a  class="last_manu" href="#"><img src="<%= asset_path("search_icon.png")%>" alt="#" /></a> </li>
+                      <li> <a href="/about">About</a> </li>
+                      <li> <a href="/events">Concerts </a> </li>
+                      <li> <a href="/contact">Contact</a> </li>
+                      <% if user_signed_in? %>
+                        <li><%= link_to "Logout", destroy_user_session_path,  data: {turbo_method: :delete, turbo_confirm: 'Are you sure?'} %></li>
+                      <% else %>
+                        <li><%= link_to "Sign up", new_user_registration_path %></li>
+                        <li><%= link_to "Login", new_user_session_path %></li>
+                      <% end %>
+                      <li  > 
+                        <div class="SearchBox">
+                          <input type="text" class="SearchBox-input form-control" placeholder="Search Event">
+                          <a  class="last_manu" href="#"><img src="<%= asset_path("search_icon.png")%>" alt="#" /></a>
+                        </div> 
+                      </li>
                       
-                     </ul>
+                    </ul>
                    </nav>
                 
                </div> 
@@ -37,3 +45,5 @@
          </div>
        </div>
      </div>
+
+     
